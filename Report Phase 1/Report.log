@@ -1,0 +1,631 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.26)  29 OCT 2018 16:34
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**Report.tex
+(./Report.tex
+LaTeX2e <2017-04-15>
+Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/04/14 v1.1b Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen105
+\Hy@linkcounter=\count88
+\Hy@pagecounter=\count89
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count90
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4498.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing OFF on input line 4518.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4751.
+\c@Hy@tempcnt=\count91
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5104.
+\XeTeXLinkMargin=\dimen106
+\Fld@menulength=\count92
+\Field@Width=\dimen107
+\Fld@charsize=\dimen108
+Package hyperref Info: Hyper figures OFF on input line 6358.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing OFF on input line 6373.
+Package hyperref Info: Link coloring OFF on input line 6378.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count93
+\c@Item=\count94
+\c@Hfootnote=\count95
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+\Fld@listcount=\count96
+\c@bookmark@seq@number=\count97
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip43
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/11/05 v2.16a AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks15
+\ex@=\dimen109
+))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen110
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count98
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count99
+\leftroot@=\count100
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count101
+\DOTSCASE@=\count102
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen111
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count103
+\c@MaxMatrixCols=\count104
+\dotsspace@=\muskip11
+\c@parentequation=\count105
+\dspbrk@lvl=\count106
+\tag@help=\toks16
+\row@=\count107
+\column@=\count108
+\maxfields@=\count109
+\andhelp@=\toks17
+\eqnshift@=\dimen112
+\alignsep@=\dimen113
+\tagshift@=\dimen114
+\tagwidth@=\dimen115
+\totwidth@=\dimen116
+\lineht@=\dimen117
+\@envbody=\toks18
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count110
+\float@exts=\toks20
+\float@box=\box28
+\@float@everytoks=\toks21
+\@floatcapt=\box29
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count111
+\Gm@cntv=\count112
+\c@Gm@tempcnt=\count113
+\Gm@bindingoffset=\dimen118
+\Gm@wd@mp=\dimen119
+\Gm@odd@mp=\dimen120
+\Gm@even@mp=\dimen121
+\Gm@layoutwidth=\dimen122
+\Gm@layoutheight=\dimen123
+\Gm@layouthoffset=\dimen124
+\Gm@layoutvoffset=\dimen125
+\Gm@dimlist=\toks22
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 22.
+
+(./Report.aux)
+\openout1 = `Report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+
+(/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count114
+\scratchdimen=\dimen126
+\scratchbox=\box30
+\nofMPsegments=\count115
+\nofMParguments=\count116
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count117
+\MPscratchDim=\dimen127
+\MPnumerator=\count118
+\makeMPintoPDFobject=\count119
+\everyMPtoPDFconversion=\toks24
+) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+\AtBeginShipoutBox=\box31
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+Package hyperref Info: Link coloring ON on input line 26.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count120
+)
+LaTeX Info: Redefining \ref on input line 26.
+LaTeX Info: Redefining \pageref on input line 26.
+LaTeX Info: Redefining \nameref on input line 26.
+
+(./Report.out) (./Report.out)
+\@outlinefile=\write3
+\openout3 = `Report.out'.
+
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: legalpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 867.24002pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=1011.78pt
+* \textwidth=469.75502pt
+* \textheight=867.24002pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 29.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 29.
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<module.png, id=36, 613.29124pt x 489.83pt>
+File: module.png Graphic file (type png)
+ <use module.png>
+Package pdftex.def Info: module.png used on input line 46.
+(pdftex.def)             Requested size: 305.33789pt x 243.868pt.
+ [1
+
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}pdfTeX wa
+rning (ext4): destination with the same identifier (name{figure.1}) has been al
+ready used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.52 \section
+             {Phase 2: (During the winter)} <./module.png>]
+./Report.tex:57: Undefined control sequence.
+l.57 \subfigure
+               {\includegraphics[width=0.35\textwidth]{frogs.png}}
+? 
+<frogs.png, id=49, 369.38pt x 365.365pt>
+File: frogs.png Graphic file (type png)
+ <use frogs.png>
+Package pdftex.def Info: frogs.png used on input line 57.
+(pdftex.def)             Requested size: 164.41711pt x 162.62872pt.
+
+./Report.tex:59: Undefined control sequence.
+l.59 \subfigure
+               {\includegraphics[width=0.35\textwidth]{frogs1.png}}
+? 
+<frogs1.png, id=50, 370.38374pt x 362.35374pt>
+File: frogs1.png Graphic file (type png)
+ <use frogs1.png>
+Package pdftex.def Info: frogs1.png used on input line 59.
+(pdftex.def)             Requested size: 164.41711pt x 160.85158pt.
+
+./Report.tex:63: Undefined control sequence.
+l.63 \subfigure
+               {\includegraphics[width=0.35\textwidth]{plane.png}}
+? 
+<plane.png, id=51, 373.395pt x 368.37625pt>
+File: plane.png Graphic file (type png)
+ <use plane.png>
+Package pdftex.def Info: plane.png used on input line 63.
+(pdftex.def)             Requested size: 164.41711pt x 162.20409pt.
+
+./Report.tex:65: Undefined control sequence.
+l.65 \subfigure
+               {\includegraphics[width=0.35\textwidth]{plane1.png}}
+? 
+<plane1.png, id=52, 369.38pt x 368.37625pt>
+File: plane1.png Graphic file (type png)
+ <use plane1.png>
+Package pdftex.def Info: plane1.png used on input line 65.
+(pdftex.def)             Requested size: 164.41711pt x 163.96906pt.
+
+./Report.tex:69: Undefined control sequence.
+l.69 \subfigure
+               {\includegraphics[width=0.35\textwidth]{frog.png}}
+? 
+<frog.png, id=53, 372.39125pt x 367.3725pt>
+File: frog.png Graphic file (type png)
+ <use frog.png>
+Package pdftex.def Info: frog.png used on input line 69.
+(pdftex.def)             Requested size: 164.41711pt x 162.20496pt.
+
+./Report.tex:71: Undefined control sequence.
+l.71 \subfigure
+               {\includegraphics[width=0.35\textwidth]{frog1.png}}
+? 
+<frog1.png, id=54, 370.38374pt x 368.37625pt>
+File: frog1.png Graphic file (type png)
+ <use frog1.png>
+Package pdftex.def Info: frog1.png used on input line 71.
+(pdftex.def)             Requested size: 164.41711pt x 163.52501pt.
+ [2 <./frogs.png> <./frogs1.png> <./plane.png> <./plane1.png>]
+./Report.tex:75: Undefined control sequence.
+l.75 \subfigure
+               {\includegraphics[width=0.35\textwidth]{horse.png}}
+? 
+<horse.png, id=63, 366.36874pt x 363.3575pt>
+File: horse.png Graphic file (type png)
+ <use horse.png>
+Package pdftex.def Info: horse.png used on input line 75.
+(pdftex.def)             Requested size: 164.41711pt x 163.0658pt.
+
+./Report.tex:77: Undefined control sequence.
+l.77 \subfigure
+               {\includegraphics[width=0.35\textwidth]{horse1.png}}
+? 
+<horse1.png, id=64, 370.38374pt x 368.37625pt>
+File: horse1.png Graphic file (type png)
+ <use horse1.png>
+Package pdftex.def Info: horse1.png used on input line 77.
+(pdftex.def)             Requested size: 164.41711pt x 163.52501pt.
+
+./Report.tex:81: Undefined control sequence.
+l.81 \subfigure
+               {\includegraphics[width=0.35\textwidth]{I.png}}
+? 
+<I.png, id=65, 372.39125pt x 369.38pt>
+File: I.png Graphic file (type png)
+ <use I.png>
+Package pdftex.def Info: I.png used on input line 81.
+(pdftex.def)             Requested size: 164.41711pt x 163.09132pt.
+
+./Report.tex:83: Undefined control sequence.
+l.83 \subfigure
+               {\includegraphics[width=0.35\textwidth]{I1.png}}
+? 
+<I1.png, id=66, 369.38pt x 370.38374pt>
+File: I1.png Graphic file (type png)
+ <use I1.png>
+Package pdftex.def Info: I1.png used on input line 83.
+(pdftex.def)             Requested size: 164.41711pt x 164.86263pt.
+
+./Report.tex:87: Undefined control sequence.
+l.87 \subfigure
+               {\includegraphics[width=0.35\textwidth]{I2.png}}
+? 
+<I2.png, id=67, 370.38374pt x 370.38374pt>
+File: I2.png Graphic file (type png)
+ <use I2.png>
+Package pdftex.def Info: I2.png used on input line 87.
+(pdftex.def)             Requested size: 164.41711pt x 164.41615pt.
+
+./Report.tex:89: Undefined control sequence.
+l.89 \subfigure
+               {\includegraphics[width=0.35\textwidth]{I3.png}}
+? 
+<I3.png, id=68, 371.3875pt x 369.38pt>
+File: I3.png Graphic file (type png)
+ <use I3.png>
+Package pdftex.def Info: I3.png used on input line 89.
+(pdftex.def)             Requested size: 164.41711pt x 163.53094pt.
+
+./Report.tex:93: Undefined control sequence.
+l.93 \subfigure
+               {\includegraphics[width=0.35\textwidth]{I4.png}}
+? 
+<I4.png, id=69, 373.395pt x 366.36874pt>
+File: I4.png Graphic file (type png)
+ <use I4.png>
+Package pdftex.def Info: I4.png used on input line 93.
+(pdftex.def)             Requested size: 164.41711pt x 161.32013pt.
+
+./Report.tex:95: Undefined control sequence.
+l.95 \subfigure
+               {\includegraphics[width=0.35\textwidth]{I5.png}}
+? 
+<I5.png, id=70, 371.3875pt x 368.37625pt>
+File: I5.png Graphic file (type png)
+ <use I5.png>
+Package pdftex.def Info: I5.png used on input line 95.
+(pdftex.def)             Requested size: 164.41711pt x 163.08656pt.
+ [3 <./frog.png> <./frog1.png> <./horse.png> <./horse1.png> <./I.png> <./I1.png
+> <./I2.png> <./I3.png>]
+./Report.tex:99: Undefined control sequence.
+l.99 \subfigure
+               {\includegraphics[width=0.35\textwidth]{I6.png}}
+? 
+<I6.png, id=83, 371.3875pt x 370.38374pt>
+File: I6.png Graphic file (type png)
+ <use I6.png>
+Package pdftex.def Info: I6.png used on input line 99.
+(pdftex.def)             Requested size: 164.41711pt x 163.97533pt.
+
+./Report.tex:101: Undefined control sequence.
+l.101 \subfigure
+                {\includegraphics[width=0.35\textwidth]{I7.png}}
+? 
+<I7.png, id=84, 371.3875pt x 368.37625pt>
+File: I7.png Graphic file (type png)
+ <use I7.png>
+Package pdftex.def Info: I7.png used on input line 101.
+(pdftex.def)             Requested size: 164.41711pt x 163.08656pt.
+
+./Report.tex:105: Undefined control sequence.
+l.105 \subfigure
+                {\includegraphics[width=0.35\textwidth]{I8.png}}
+? 
+<I8.png, id=85, 370.38374pt x 368.37625pt>
+File: I8.png Graphic file (type png)
+ <use I8.png>
+Package pdftex.def Info: I8.png used on input line 105.
+(pdftex.def)             Requested size: 164.41711pt x 163.52501pt.
+
+./Report.tex:107: Undefined control sequence.
+l.107 \subfigure
+                {\includegraphics[width=0.35\textwidth]{I9.png}}
+? 
+<I9.png, id=86, 371.3875pt x 367.3725pt>
+File: I9.png Graphic file (type png)
+ <use I9.png>
+Package pdftex.def Info: I9.png used on input line 107.
+(pdftex.def)             Requested size: 164.41711pt x 162.6422pt.
+
+./Report.tex:111: Undefined control sequence.
+l.111 \subfigure
+                {\includegraphics[width=0.35\textwidth]{I12.png}}
+? 
+<I12.png, id=87, 371.3875pt x 372.39125pt>
+File: I12.png Graphic file (type png)
+ <use I12.png>
+Package pdftex.def Info: I12.png used on input line 111.
+(pdftex.def)             Requested size: 164.41711pt x 164.86409pt.
+
+./Report.tex:113: Undefined control sequence.
+l.113 \subfigure
+                {\includegraphics[width=0.35\textwidth]{I13.png}}
+? 
+<I13.png, id=88, 372.39125pt x 368.37625pt>
+File: I13.png Graphic file (type png)
+ <use I13.png>
+Package pdftex.def Info: I13.png used on input line 113.
+(pdftex.def)             Requested size: 164.41711pt x 162.64813pt.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
+ [4 <./I4.png> <./I5.png> <./I6.png> <./I7.png> <./I8.png> <./I9.png> <./I12.pn
+g> <./I13.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
+
+(./Report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 121.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 121.
+Package rerunfilecheck Info: File `Report.out' has not changed.
+(rerunfilecheck)             Checksum: 3F2B99657E8CE5603A1F7519F36829D3;467.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 121.
+ ) 
+Here is how much of TeX's memory you used:
+ 6616 strings out of 492995
+ 95003 string characters out of 6132703
+ 189009 words of memory out of 5000000
+ 10072 multiletter control sequences out of 15000+600000
+ 11195 words of font info for 44 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 28i,7n,29p,1266b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
+sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on Report.pdf (4 pages, 404167 bytes).
+PDF statistics:
+ 121 PDF objects out of 1000 (max. 8388607)
+ 68 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
+ 170 words of extra memory for PDF output out of 10000 (max. 10000000)
+
