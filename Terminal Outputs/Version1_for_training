@@ -1,0 +1,171 @@
+import argparse
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image,ImageEnhance
+import os
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torch.distributions import Categorical
+from Policy import *
+from utils import change_brightness,read
+
+parser = argparse.ArgumentParser(description='PyTorch REINFORCE')
+parser.add_argument('--gamma', type=float, default=0.99, metavar='G',
+                    help='discount factor (default: 0.99)')
+parser.add_argument('--seed', type=int, default=1234, metavar='N',
+                    help='random seed (default: 123)')
+parser.add_argument('--log-interval', type=int, default=10, metavar='N',
+                    help='interval between training status logs (default: 10)')
+parser.add_argument('--load_model',type=int,default=1,metavar='N',
+                    help='whether to use the saved model or not to resume training')
+parser.add_argument('--weights',default='Weights.pt',
+                    help='Path to the weights.')
+parser.add_argument('--optimizer',default='Optimizer.pt',
+                    help='Path to the Optimizer.')
+
+args = parser.parse_args()
+
+
+#env = gym.make('CartPole-v0')
+#env.seed(args.seed)
+torch.manual_seed(args.seed)
+
+###########################################################################
+
+folder='images/'
+    
+img = Image.open('images_for_training/6.png')
+new_width  = 64
+new_height = 64
+img = img.resize((new_width, new_height), Image.ANTIALIAS)
+img=change_brightness(img,0.5)
+#plt.imshow(img)
+
+a=list(img.size)
+a.append(3)
+a=tuple(a)
+
+
+x=img##### FILL with image as input
+action_table=np.linspace(0,2,41) # explore for changing the brightness from 0 to 2 in steps of 0.05
+# 0 means complete dark,2 means complete bright, 1 means the original image
+
+n_actions = len(action_table) # increase or decrease brightness
+state_dim = a #### fill image size with channels
+
+###########################################################################
+
+policy = Policy()
+
+if args.load_model==0:
+    optimizer = optim.Adam(policy.parameters(), lr=1e-3)
+eps = np.finfo(np.float32).eps.item()
+
+
+print('Loading the model if any')
+print(args.load_model)
+if args.load_model==1:
+    policy.load_state_dict(torch.load(args.weights))
+    optimizer = optim.Adam(policy.parameters(), lr=1e-3)
+    optimizer.load_state_dict(torch.load(args.optimizer))
+    print(args.weights)
+    print(args.optimizer)
+    #pass
+
+
+def save_model():
+    print('Saving the weights')
+    #policy.save_state_dict('Weights1.pt')
+    torch.save(policy.state_dict(),args.weights)
+    torch.save(optimizer.state_dict(),args.optimizer)
+
+
+def select_action(state):
+    state = torch.from_numpy(state).float().unsqueeze(0)
+    probs = policy(state)
+    print(probs)
+    m = Categorical(probs)
+    action = m.sample()
+    print(action_table[int(np.array(action))])
+    policy.saved_log_probs.append(m.log_prob(action_table[int(np.array(action))]))
+    return action.item()
+
+
+def finish_episode():
+    R = 0
+    policy_loss = []
+    rewards = []
+    for r in policy.rewards[::-1]:
+        R = r + args.gamma * R
+        rewards.insert(0, R)
+    rewards = torch.tensor(rewards)
+    #rewards = (rewards - rewards.mean()) / (rewards.std() + eps)
+    for log_prob, reward in zip(policy.saved_log_probs, rewards):
+        policy_loss.append(-log_prob * reward)
+    optimizer.zero_grad()
+    policy_loss = torch.cat(policy_loss).sum()
+    policy_loss.backward()
+    optimizer.step()
+    del policy.rewards[:]
+    del policy.saved_log_probs[:]
+
+
+def main():
+    one_reward=0  # to count number of +1 rewards in a set of training
+    t_max = 100
+    for t in range(t_max):  # Don't infinite loop while learning
+        flag=1
+        print('Session Number:',t)
+        index_img = np.random.uniform(low = 1, high = 600, size = (t_max,)).astype(int)
+        print(folder+str(index_img[t])) #print the image filepath
+        img = read(folder+str(index_img[t])+'.png',64)
+        img_arr = np.array(img)
+        print(img_arr.shape)
+        state = img_arr
+        plt.imshow(np.array(img_arr))
+        plt.show()
+        
+        
+        action = select_action(np.reshape(state,(3,64,64)))
+        print('\n')
+        print('Action:',action)
+        
+        
+        new_image = change_brightness(img,action)
+        plt.imshow(np.array(new_image))
+        plt.show()
+        
+        
+        reward = int(input("Enter Reward: "))
+        
+        if reward==1:
+            one_reward+=1
+            
+        if reward==-1:
+            flag==0
+            print('Breaking')
+            ######## ADD LINE TO SAVE WEIGHTS ########
+            #torch.save(policy, 'Weights.pt')
+            save_model()
+            print('%d number of +1 rewards in %d images'%(one_reward,t))
+            break
+        
+        if t%10==0 :
+            # save model after 10 iterations
+            save_model()
+            print('*'*50)
+        #policy.rewards.append(reward)
+    
+        if flag:        # only when not break
+            policy.rewards.append(reward)
+            finish_episode()
+        
+    save_model()
+    print('%d number of +1 rewards in %d images'%(one_reward,t))
+    print('*'*50)
+        
+    
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,6 @@
+git init
+git add .
+git commit -m "Rechecked versions"
+git remote add origin https://github.com/nsidn98/Reinforcement-Learning-in-Images.git
+git remote -v
+git push -u origin master

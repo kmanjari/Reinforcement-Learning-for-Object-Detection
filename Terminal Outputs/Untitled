@@ -1,0 +1,268 @@
+from PIL import Image,ImageEnhance
+import matplotlib.pyplot as plt
+import numpy as np
+import cv2
+import tensorflow as tf
+
+def change_brightness(image,brightness_factor):
+    #change the brightness
+    #brightness factor between (0,2) with 1 being original image
+    brightness = ImageEnhance.Brightness(image)
+    image = brightness.enhance(brightness_factor)
+    return image
+
+def read(filepath,size):
+    img = Image.open(filepath)
+    new_width  = size
+    new_height = size
+    img = img.resize((new_width, new_height), Image.ANTIALIAS)
+    return img
+
+folder='images_for_training/'
+def get_batch(folder):
+    index_img=np.random.uniform(low=1, high=300, size=(30,)).astype(int) #get random images
+    images=np.zeros((30,64,64,3)) # the shape of the batch_size x image
+    for i in range(len(index_img)):
+        img=read(folder+str(index_img[i])+'.png',64)
+        images[i]=np.array(img)
+    return images
+    
+img = Image.open('images_for_training/6.png')
+new_width  = 64
+new_height = 64
+img = img.resize((new_width, new_height), Image.ANTIALIAS)
+img=change_brightness(img,0.5)
+#plt.imshow(img)
+
+a=list(img.size)
+a.append(3)
+a=tuple(a)
+
+
+x=img##### FILL with image as input
+action_table=np.linspace(0,2,41) # explore for changing the brightness from 0 to 2 in steps of 0.05
+# 0 means complete dark,2 means complete bright, 1 means the original image
+
+n_actions = len(action_table) # increase or decrease brightness
+state_dim = a #### fill image size with channels
+
+
+
+#create input variables. We only need <s,a,R> for REINFORCE
+states = tf.placeholder('float32',(None,)+state_dim,name="states")
+actions = tf.placeholder('int32',name="action_ids")
+cumulative_rewards = tf.placeholder('float32', name="cumulative_returns")
+
+import keras
+from keras import backend as K
+from keras.models import Sequential
+from keras.utils import np_utils
+from keras.preprocessing.image import ImageDataGenerator
+from keras.layers import Dense, Activation, Flatten, Dropout, BatchNormalization, Conv2D, MaxPooling2D
+from keras import regularizers
+from keras.callbacks import LearningRateScheduler
+K.set_learning_phase(1) #set learning phase
+# create a model
+model=Sequential()
+################################################################
+model = Sequential()
+model.add(Conv2D(32, (3, 3), padding='same', activation='relu', input_shape=state_dim))
+model.add(Conv2D(32, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Flatten())
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(n_actions, activation='linear'))
+################################################################
+################################
+'''
+model.add(Conv2D(32, (3, 3), padding='same', activation='relu', input_shape=(64,64,3)))
+model.add(Conv2D(32, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Flatten())
+model.add(Dense(512, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.5))
+
+model.add(Dense(n_actions))
+model.add(Activation('linear'))
+'''
+################################
+'''
+model.add(Conv2D(32, (3, 3), padding='same',input_shape=(64,64,3)))
+model.add(Activation('relu'))
+model.add(Conv2D(32, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPool2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64, (3, 3), padding='same'))
+model.add(Activation('relu'))
+model.add(Conv2D(64, (3, 3)))
+model.add(Activation('relu'))
+model.add(MaxPool2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Flatten())
+model.add(Dense(512))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+#######
+model.add(Dense(128))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+#######
+model.add(Dense(n_actions))
+model.add(Activation('linear'))
+
+'''
+##################
+# DO NOT INCLUDE
+'''
+model.add(Dense(num_classes))
+model.add(Activation('softmax'))
+
+#####
+network.add(L.Dense(32, activation='relu', input_shape=state_dim))
+network.add(L.Dense(32, activation='relu'))
+network.add(L.Dense(n_actions, activation='linear'))
+'''
+#################
+logits = model(states)
+policy = tf.nn.softmax(logits)
+log_policy = tf.nn.log_softmax(logits)
+
+
+#utility function to pick action in one given state
+def get_action_proba(s):
+    print(s.shape)
+    return policy.eval({states:s})[0]
+#get_action_proba = lambda s: policy.eval({states:s})[0]
+
+
+#get probabilities for parti
+indices = tf.stack([tf.range(tf.shape(log_policy)[0]),actions],axis=-1)
+log_policy_for_actions = tf.gather_nd(log_policy,indices)
+
+J = tf.reduce_mean(log_policy_for_actions*cumulative_rewards)
+
+
+#regularize with entropy
+entropy =  -tf.reduce_sum(policy * log_policy, 1, name="entropy")
+
+#all network weights
+all_weights = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES)
+
+#weight updates. maximizing J is same as minimizing -J. Adding negative entropy.
+loss = -J -0.1 * entropy
+
+update = tf.train.AdamOptimizer().minimize(loss,var_list=all_weights)
+
+def train_step(_states,_actions,_rewards):
+    """given full session, trains agent with policy gradient"""
+    update.run({states:_states,actions:_actions,cumulative_rewards:_rewards})
+    
+def generate_session(t_max=1):
+    """play env with REINFORCE agent and train at the session end"""
+    
+    #arrays to record session
+    states,actions,rewards = [],[],[]
+    rewards=np.zeros((t_max,1))
+    states=np.zeros((t_max,1,64,64,3))
+    ########## Have to write code for getting batches of images each batch ###########
+    #img=get_batch(folder)
+    #get the first image
+    index_img=np.random.uniform(low=1, high=300, size=(t_max,)).astype(int) #get random images
+    
+    
+    for t in range(t_max):
+        flag=1
+        img=read(folder+str(index_img[t])+'.png',64)
+        print(folder+str(index_img[t]))
+        img_arr=np.array(img)
+        s = img_arr
+        s = s.reshape((1,s.shape[0],s.shape[1],s.shape[2]))
+        #action probabilities array aka pi(a|s)
+        action_probas = get_action_proba(s)
+        
+        #show the current image
+        plt.imshow(np.array(img_arr))
+        plt.show()
+        
+        #sample the action
+        a = np.random.choice(n_actions, 1, p=action_probas)[0]
+        
+        #change the brightness
+        new_s=change_brightness(img,a)
+        plt.imshow(np.array(new_s))
+        plt.show()
+        
+        # user gives the reward
+        r=int(input("Enter Reward: "))
+        #press escape key for exiting
+        print(r)
+        if r==-1:
+            flag=0
+            print('Breaking')
+            break
+        
+        #new_s,r,done,info = env.step(a)
+        
+        #record session history to train later
+        states[t]=s
+        actions.append(a)
+        rewards[t]=r
+        
+        #if done: break
+    #rewards=list(np.squeeze(rewards))
+    if flag:
+        states=list(np.squeeze(states))
+        print(np.array(states).shape)
+        states=np.expand_dims(states, axis=0)
+        #print(np.array(states).shape)
+        print(rewards)
+        train_step(states,actions,rewards)
+        print('Backpropping')
+            
+    return sum(rewards),flag
+    
+s = tf.InteractiveSession()
+s.run(tf.global_variables_initializer())
+
+for i in range(100):
+    print('Session Number %d'%i)
+    #PRESS -1 TO STOP THE LOOP
+    rewards,flag = generate_session()  #generate new sessions
+    rewards=[rewards]
+    if flag==0:
+        print('Saving Weights')
+        print('#'*50)
+        model.save('Weights.h5')
+        break
+    
+print('Saving Weights')
+print('#'*50)
+model.save('Weights.h5')
+s.close()
+
+
