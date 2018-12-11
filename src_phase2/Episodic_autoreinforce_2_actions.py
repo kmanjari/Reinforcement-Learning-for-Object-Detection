@@ -164,7 +164,7 @@ def main():
         index_img = np.random.uniform(low = 1, high = 10000, size = (1,)).astype(int)
         img = read(folder+str(index_img[0])+'.png',64)
         #synthesize the image
-        change_img=synthetic_change(img,action_table_synth)
+        change_img,act=synthetic_change(img,action_table_synth)
         #convert to array
         change_img_arr=np.array(change_img)
         #img_arr = np.array(img)

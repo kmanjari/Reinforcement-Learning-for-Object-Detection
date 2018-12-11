@@ -1,5 +1,5 @@
 '''
-Code to change images with brightness and color
+Code to change images with brightness and color with automatic rewards
 '''
 import argparse
 import numpy as np

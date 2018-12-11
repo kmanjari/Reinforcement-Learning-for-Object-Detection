@@ -72,11 +72,11 @@ spec:
         alpha.kubernetes.io/nvidia-gpu: 1 # Number of GPUs
         # RAM can be specified in either MiB (1024x1024 bytes) (ex. "500Mi")
         # or GiB (ex. "4Gi")
-        memory: "4Gi"
-        cpu: "1" # Number of CPU cores
+        memory: "25Gi" #max 50
+        cpu: "7" # Number of CPU cores #max is 8
       requests:
-        memory: "4Gi"
-        cpu: "1"
+        memory: "25Gi"
+        cpu: "7"
     # Here, you can specify where you want the above directories to be mounted
     # within the container. It is recommended to use this configuration as
     # it mirrors what is present on the master machine.
