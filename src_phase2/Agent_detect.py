@@ -79,10 +79,10 @@ if args.load_model==0:
 eps = np.finfo(np.float32).eps.item()
 classes = load_classes('data/coco.names')
 
-CUDA = torch.cuda.is_available()
-if CUDA:
-    print('CUDA available, setting GPU mode')
-    policy.cuda()
+#CUDA = torch.cuda.is_available()
+#if CUDA:
+#    print('CUDA available, setting GPU mode')
+#    policy.cuda()
 
 
 print('Loading the model if any')
@@ -138,7 +138,7 @@ def finish_episode():
     
 image_list = os.listdir(image_filepath)
 image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
-exit=1
+reward_arr=[]
 def main():
     # for episodes in range(args.episodes):
     for episodes in range(num_images):
@@ -227,19 +227,21 @@ def main():
         else:
             iou_reward = 0
         reward = args.alpha*(iou_reward)+(1-args.alpha)*F1
-        print(f'Episode:{episodes}\t Reward:{reward}')
+        reward_arr.append(reward)
+        print('Episode:%d \t Reward:%f'%(episodes,reward))
         policy.rewards.append(reward)
         finish_episode()  # does all backprop
         print_arg=False
         if print_arg:
-            print(f'F1:{F1}')
-            print(f'Reward:{reward}')
-            print(f'Action:{act}')
-            print(f'Agent Action:{agent_act}')
-            print(f'Ideal action:{1/act}')
+            print('F1:%f'%(F1))
+            print('Reward:%f'%(reward))
+            print('Action:%f'%(act))
+            print('Agent Action:%f'%agent_act)
+            print('Ideal action:%f'%(1/act))
             print()
 
     save_model()
+    print('Mean reward:%f'%(np.mean(reward_arr)))
     
     
 if __name__ == '__main__':
