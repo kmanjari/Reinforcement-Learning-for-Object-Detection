@@ -3,6 +3,8 @@ RL Agent to change image brightness according
 to image(state) to get maximum performance from
 a pre-trained network, in this case YOLO
 Agent network is ResNet18 with REINFORCE Algorithm
+Author: Siddharth Nayak
+email: siddharthnayak98@gmail.com
 '''
 import argparse
 import numpy as np
