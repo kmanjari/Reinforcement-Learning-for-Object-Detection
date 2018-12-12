@@ -8,8 +8,8 @@ source /tools/config.sh
 # Activate your environment
 source activate py35
 # Change to the directory in which your code is present
-cd /storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/run.sh
+cd /storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2
 # Run the code. The -u option is used here to use unbuffered writes
 # so that output is piped to the file as and when it is produced.
 # Here, the code is the MNIST Tensorflow example.
-python -u Agent_detect.py --load_model=1&> out
+python -u yolo_baseline.py &> out
