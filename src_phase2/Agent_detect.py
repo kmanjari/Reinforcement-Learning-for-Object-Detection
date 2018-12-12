@@ -147,7 +147,7 @@ def main():
         image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
         reward_arr=[]
         # for episodes in range(args.episodes):
-        for episodes in range(2):
+        for episodes in range(num_images):
             img_name = image_list[episodes]
             # index_img = np.random.uniform(low = 0, high = num_images, size = (1,)).astype(int) # random number between 0 and num_images eg: 435
             # img_name = os.listdir(image_filepath)[index_img[0]] # eg: 000005.jpg
