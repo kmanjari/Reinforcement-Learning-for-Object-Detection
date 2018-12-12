@@ -2,10 +2,21 @@ import numpy as np
 import pandas as pd
 import random
 from PIL import Image,ImageEnhance
+from random import shuffle
 import cv2
 import matplotlib.pyplot as plt
 from skimage.measure import compare_ssim as ssim
 
+
+def shuffle_arr(arr):
+    '''
+    Shuffles the list and returns
+    '''
+    b=arr[:]
+    shuffle(b)
+    return b
+    
+    
 def change_brightness(image,brightness_factor):
     #change the brightness
     #brightness factor between (0,2) with 1 being original image

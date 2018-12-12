@@ -3,8 +3,6 @@ RL Agent to change image brightness according
 to image(state) to get maximum performance from
 a pre-trained network, in this case YOLO
 Agent network is ResNet18 with REINFORCE Algorithm
-Author: Siddharth Nayak
-email: siddharthnayak98@gmail.com
 '''
 import argparse
 import numpy as np
@@ -45,8 +43,6 @@ parser.add_argument('--show',default=0,
                     help='To show the images before and after transformation')
 parser.add_argument('--episodes',type=int,default=10,
                     help='Number of episodes')
-parser.add_argument('--tmax',type=int,default=1,
-                    help='Number of images per episode')
 parser.add_argument('--lr',type=float,default=1e-6,
                     help='Learning rate')
 parser.add_argument('--std',default=0,
@@ -83,12 +79,11 @@ if args.load_model==0:
 eps = np.finfo(np.float32).eps.item()
 classes = load_classes('data/coco.names')
 
-#CUDA = torch.cuda.is_available()
-'''
+CUDA = torch.cuda.is_available()
 if CUDA:
     print('CUDA available, setting GPU mode')
     policy.cuda()
-'''
+
 
 print('Loading the model if any')
 print(args.load_model)
@@ -141,13 +136,15 @@ def finish_episode():
     del policy.rewards[:]
     del policy.saved_log_probs1[:]
     
-    
+image_list = os.listdir(image_filepath)
+image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
+exit=1
 def main():
-    reward_arr=[]
-    for episodes in range(args.episodes):
-        t_max = args.tmax
-        index_img = np.random.uniform(low = 0, high = num_images, size = (1,)).astype(int) # random number between 0 and num_images eg: 435
-        img_name = os.listdir(image_filepath)[index_img[0]] # eg: 000005.jpg
+    # for episodes in range(args.episodes):
+    for episodes in range(num_images):
+        img_name = image_list[episodes]
+        # index_img = np.random.uniform(low = 0, high = num_images, size = (1,)).astype(int) # random number between 0 and num_images eg: 435
+        # img_name = os.listdir(image_filepath)[index_img[0]] # eg: 000005.jpg
         img = Image.open(image_filepath+img_name)
         orig_img_arr = np.array(img)
         orig_img_arr_lr, w, h = letterbox_image(orig_img_arr,(args.reso,args.reso)) #resized image by keeping aspect ratio same
@@ -230,21 +227,20 @@ def main():
         else:
             iou_reward = 0
         reward = args.alpha*(iou_reward)+(1-args.alpha)*F1
-        reward_arr.append(reward)
-        print('Episode:%d \t Reward:%f'%(episodes,reward))
+        print(f'Episode:{episodes}\t Reward:{reward}')
         policy.rewards.append(reward)
         finish_episode()  # does all backprop
         print_arg=False
         if print_arg:
-            print('F1:%f'%F1)
-            print('Reward:%f'%reward)
-            print('Action:%f'%act)
-            print('Agent Action:%f'%agent_act)
-            print('Ideal action:%f'%(1/act))
+            print(f'F1:{F1}')
+            print(f'Reward:{reward}')
+            print(f'Action:{act}')
+            print(f'Agent Action:{agent_act}')
+            print(f'Ideal action:{1/act}')
             print()
 
     save_model()
-    print('Mean rewards:%f'%np.mean(reward_arr))
+    
     
 if __name__ == '__main__':
     main()

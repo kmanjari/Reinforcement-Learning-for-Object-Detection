@@ -60,8 +60,8 @@ def main():
     FN_total=0
     FP_total=0
     gnd_total=0
-    for episodes in range(len(os.listdir(image_filepath))):
-    # for episodes in tqdm(range(3)):
+    for episodes in tqdm(range(len(os.listdir(image_filepath)))):
+    # for episodes in tqdm(range(4)):
         img_name = os.listdir(image_filepath)[episodes] # eg: 000005.jpg
         img = Image.open(image_filepath+img_name)
         orig_img_arr = np.array(img)
@@ -119,19 +119,15 @@ def main():
         reward_arr.append(reward)
         
         # print(f'Episode:{episodes}\t Reward:{reward}')
-        print_arg=False
-        if print_arg:
-            print(f'F1:{F1}')
-            print(f'Reward:{reward}')
-            print()
+        
     print('#'*50)
     print()
-    print(f'Mean Reward:{np.mean(reward_arr)}')
-    print(f'Total True Positives:{TP_total}')
-    print(f'Total False Positives:{FP_total}')
-    print(f'Total False Negatives:{FN_total}')
-    print(f'Total ground truth images:{gnd_total}')
-    print(f'Mean IOU score:{np.mean(iou_arr)}')
+    print('Mean Reward:%f '%(np.mean(reward_arr)))
+    print('Total True Positives:%f'%(TP_total))
+    print('Total False Positives:%f'%(FP_total))
+    print('Total False Negatives:%f'%(FN_total))
+    print('Total ground truth images:%f'%(gnd_total))
+    print('Mean IOU score:%f'%(np.mean(iou_arr)))
     print()
     print('#'*50)
     print()

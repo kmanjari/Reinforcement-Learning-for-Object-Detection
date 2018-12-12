@@ -108,7 +108,6 @@ class Detector():
         # print((output))
         output = write_results(output, self.confidence, self.num_classes, nms = True, nms_conf = self.nms_thresh)
         if type(output) == int:
-            print('Zero Int')
             output = torch.tensor(np.zeros((1,8)))
         
         output[:,1:5] = torch.clamp(output[:,1:5], 0.0, float(inp_dim))/float(inp_dim)
