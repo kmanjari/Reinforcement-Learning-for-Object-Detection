@@ -59,6 +59,8 @@ parser.add_argument('--iou_threshold',type=float,default=0.5,
                     help='Threshold for IOU to determine if object is detected or not')
 parser.add_argument('--alpha',type=float,default=0.5,
                     help='IOU Weight for reward --> r=alpha*(iou)+(1-alpha)*F1')
+parser.add_argument('--epoch',type=int,default=1,
+                    help='Number of epochs')
                     
                     
 args = parser.parse_args()
@@ -136,113 +138,118 @@ def finish_episode():
     del policy.rewards[:]
     del policy.saved_log_probs1[:]
     
-image_list = os.listdir(image_filepath)
-image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
-reward_arr=[]
+
+
 def main():
-    # for episodes in range(args.episodes):
-    for episodes in range(num_images):
-        img_name = image_list[episodes]
-        # index_img = np.random.uniform(low = 0, high = num_images, size = (1,)).astype(int) # random number between 0 and num_images eg: 435
-        # img_name = os.listdir(image_filepath)[index_img[0]] # eg: 000005.jpg
-        img = Image.open(image_filepath+img_name)
-        orig_img_arr = np.array(img)
-        orig_img_arr_lr, w, h = letterbox_image(orig_img_arr,(args.reso,args.reso)) #resized image by keeping aspect ratio same
-        x = Image.fromarray(orig_img_arr_lr.astype('uint8'), 'RGB')
-        orig_img_arr=np.array(x)
+    image_list = os.listdir(image_filepath)
+    reward_epoch=[]
+    for epoch in range(args.epoch):
+        image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
+        reward_arr=[]
+        # for episodes in range(args.episodes):
+        for episodes in range(2):
+            img_name = image_list[episodes]
+            # index_img = np.random.uniform(low = 0, high = num_images, size = (1,)).astype(int) # random number between 0 and num_images eg: 435
+            # img_name = os.listdir(image_filepath)[index_img[0]] # eg: 000005.jpg
+            img = Image.open(image_filepath+img_name)
+            orig_img_arr = np.array(img)
+            orig_img_arr_lr, w, h = letterbox_image(orig_img_arr,(args.reso,args.reso)) #resized image by keeping aspect ratio same
+            x = Image.fromarray(orig_img_arr_lr.astype('uint8'), 'RGB')
+            orig_img_arr=np.array(x)
 
-        ## mean size of image is (384,472,3)
-        # img = read(folder+str(index_img[0])+'.png',64)
-        #synthesize the image
-        change_img , act = synthetic_change(img,action_table_synth)
-        #convert to array
-        change_img_arr = np.array(change_img)
-        change_img_arr, w, h= letterbox_image(change_img_arr,(args.reso,args.reso))
-        x = Image.fromarray(change_img_arr.astype('uint8'), 'RGB')
-        change_img_arr=np.array(x)
-        #img_arr = np.array(img)
-        state=change_img_arr/255
-        state = (np.reshape(state,(3,state.shape[0],state.shape[1]))) # to get into pytorch mode
-        #take action acording to the state
-        bright_action=select_action(state)
-        agent_act=action_table[bright_action]
-        #synthetically changed image is rectified by the agent
-        new_image = change_brightness(change_img,action_table[bright_action])
-        # new_image = change_color(new_image,action_table[color_action])
+            ## mean size of image is (384,472,3)
+            # img = read(folder+str(index_img[0])+'.png',64)
+            #synthesize the image
+            change_img , act = synthetic_change(img,action_table_synth)
+            #convert to array
+            change_img_arr = np.array(change_img)
+            change_img_arr, w, h= letterbox_image(change_img_arr,(args.reso,args.reso))
+            x = Image.fromarray(change_img_arr.astype('uint8'), 'RGB')
+            change_img_arr=np.array(x)
+            #img_arr = np.array(img)
+            state=change_img_arr/255
+            state = (np.reshape(state,(3,state.shape[0],state.shape[1]))) # to get into pytorch mode
+            #take action acording to the state
+            bright_action=select_action(state)
+            agent_act=action_table[bright_action]
+            #synthetically changed image is rectified by the agent
+            new_image = change_brightness(change_img,action_table[bright_action])
+            # new_image = change_color(new_image,action_table[color_action])
 
-        # feed the changed image to detector
-        new_image_arr=np.array(new_image)
-        new_image_arr, w, h = letterbox_image(new_image_arr,(args.reso,args.reso))
-        x = Image.fromarray(new_image_arr.astype('uint8'), 'RGB')
-        new_image_arr=np.array(x)
-        if args.show:
-            plt.imshow(orig_img_arr)
-            plt.title('Original')
-            plt.show()
-            plt.imshow(change_img_arr)
-            plt.title('Modified image')
-            plt.show()
-            plt.imshow(new_image_arr)
-            plt.title('Agent modified image')
-            plt.show()
-        # print('Getting detections')
-        detector = Detector(args.confidence,args.nms_thresh,args.reso,new_image_arr)
-        d=detector.detector()
+            # feed the changed image to detector
+            new_image_arr=np.array(new_image)
+            new_image_arr, w, h = letterbox_image(new_image_arr,(args.reso,args.reso))
+            x = Image.fromarray(new_image_arr.astype('uint8'), 'RGB')
+            new_image_arr=np.array(x)
+            if args.show:
+                plt.imshow(orig_img_arr)
+                plt.title('Original')
+                plt.show()
+                plt.imshow(change_img_arr)
+                plt.title('Modified image')
+                plt.show()
+                plt.imshow(new_image_arr)
+                plt.title('Agent modified image')
+                plt.show()
+            # print('Getting detections')
+            detector = Detector(args.confidence,args.nms_thresh,args.reso,new_image_arr)
+            d=detector.detector()
 
-        # get ground truths
-        ground_truth_df = df[df['filename'] == img_name]
-        ground_truth_arr=[]
-        for i in range(len(ground_truth_df)):
-            ground_truth_arr.append(ground_truth_df.iloc[i][1:])
-        ground_truth_arr=np.array(ground_truth_arr)
+            # get ground truths
+            ground_truth_df = df[df['filename'] == img_name]
+            ground_truth_arr=[]
+            for i in range(len(ground_truth_df)):
+                ground_truth_arr.append(ground_truth_df.iloc[i][1:])
+            ground_truth_arr=np.array(ground_truth_arr)
 
-        # rearrange gnd truth array to [xmin,ymin,xmax,ymax,width,height,class] and get resized bboxes
-        resized_gnd_truth_arr=np.copy(ground_truth_arr)
-        for i in range(len(ground_truth_arr)):
-            arr=ground_truth_arr[i][:4]
-            t=getResizedBB(arr,h,w,orig_img_arr.shape[0],orig_img_arr.shape[1],args.reso)
-            resized_gnd_truth_arr[i][:4]=np.array(t)
-            
-        # rearrange predicted arrays and get class name from number
-        pred = np.array(d)
-        pred_arr=[]
-        for i in range(len(pred)):
-            arr=list(pred[i][1:5])
-            arr.append(classes[int(pred[i][-1])])
-            arr=np.array(arr)
-            pred_arr.append(arr)
-        pred_arr=np.array(pred_arr)
+            # rearrange gnd truth array to [xmin,ymin,xmax,ymax,width,height,class] and get resized bboxes
+            resized_gnd_truth_arr=np.copy(ground_truth_arr)
+            for i in range(len(ground_truth_arr)):
+                arr=ground_truth_arr[i][:4]
+                t=getResizedBB(arr,h,w,orig_img_arr.shape[0],orig_img_arr.shape[1],args.reso)
+                resized_gnd_truth_arr[i][:4]=np.array(t)
+                
+            # rearrange predicted arrays and get class name from number
+            pred = np.array(d)
+            pred_arr=[]
+            for i in range(len(pred)):
+                arr=list(pred[i][1:5])
+                arr.append(classes[int(pred[i][-1])])
+                arr=np.array(arr)
+                pred_arr.append(arr)
+            pred_arr=np.array(pred_arr)
 
-        # get F1 Score
-        # get IOU average of all detected objects
+            # get F1 Score
+            # get IOU average of all detected objects
 
 
-        TP,FP,FN,iou = get_F1(resized_gnd_truth_arr,pred_arr,args.iou_threshold)
-        # reward=np.mean(IOU+F1_score) #to make sure everything is in 0-1 range
-        recall = TP/(TP+FN+eps)
-        precision = TP/(TP+FP+eps)
-        F1 = 2*recall*precision/(precision+recall+eps)
-        if len(iou)>0: #### if no detections then iou=[]
-            iou_reward = np.mean(iou)
-        else:
-            iou_reward = 0
-        reward = args.alpha*(iou_reward)+(1-args.alpha)*F1
-        reward_arr.append(reward)
-        print('Episode:%d \t Reward:%f'%(episodes,reward))
-        policy.rewards.append(reward)
-        finish_episode()  # does all backprop
-        print_arg=False
-        if print_arg:
-            print('F1:%f'%(F1))
-            print('Reward:%f'%(reward))
-            print('Action:%f'%(act))
-            print('Agent Action:%f'%agent_act)
-            print('Ideal action:%f'%(1/act))
-            print()
+            TP,FP,FN,iou = get_F1(resized_gnd_truth_arr,pred_arr,args.iou_threshold)
+            # reward=np.mean(IOU+F1_score) #to make sure everything is in 0-1 range
+            recall = TP/(TP+FN+eps)
+            precision = TP/(TP+FP+eps)
+            F1 = 2*recall*precision/(precision+recall+eps)
+            if len(iou)>0: #### if no detections then iou=[]
+                iou_reward = np.mean(iou)
+            else:
+                iou_reward = 0
+            reward = args.alpha*(iou_reward)+(1-args.alpha)*F1
+            reward_arr.append(reward)
+            print('Episode:%d \t Reward:%f'%(episodes,reward))
+            policy.rewards.append(reward)
+            finish_episode()  # does all backprop
+            print_arg=False
+            if print_arg:
+                print('F1:%f'%(F1))
+                print('Reward:%f'%(reward))
+                print('Action:%f'%(act))
+                print('Agent Action:%f'%agent_act)
+                print('Ideal action:%f'%(1/act))
+                print()
 
-    save_model()
-    print('Mean reward:%f'%(np.mean(reward_arr)))
-    
+        save_model()
+        print('Mean reward:%f'%(np.mean(reward_arr)))
+        reward_epoch.append(np.mean(reward_arr))
+    print('Reward array:',reward_epoch)
     
 if __name__ == '__main__':
     main()
