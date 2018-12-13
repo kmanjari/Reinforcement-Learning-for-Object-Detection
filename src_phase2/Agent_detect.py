@@ -238,6 +238,8 @@ def main():
             reward_arr.append(reward)
             # print('Episode:%d \t Reward:%f'%(episodes,reward))
             policy.rewards.append(reward)
+            if CUDA:
+                reward = reward.cuda()
             finish_episode()  # does all backprop
             print_arg=False
             if print_arg:
