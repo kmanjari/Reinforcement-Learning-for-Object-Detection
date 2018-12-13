@@ -12,4 +12,4 @@ cd /storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2
 # Run the code. The -u option is used here to use unbuffered writes
 # so that output is piped to the file as and when it is produced.
 # Here, the code is the MNIST Tensorflow example.
-python -u yolo_baseline.py &> out
+python -u yolo_baseline.py --image_filepath='VOCdevkit_test/VOCdevkit/VOC2007/' --label_path='labels_test.csv' &> out_baseline_test
