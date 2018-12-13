@@ -33,7 +33,7 @@ parser.add_argument('--nms_thresh',type=float,default=0.3,
                     help='Non Maximal Suppression Threshold for YOLO')
 parser.add_argument('--reso',type=int,default=416,
                     help='Resolution of Image to be fed into YOLO for detection keeping the Aspect Ration constant')
-parser.add_argument('--image_filepath',type=str,default='VOCdevkit/VOC2007/',
+parser.add_argument('--image_filepath',type=str,default='VOCdevkit_test/VOC2007/',
                     help='VOC Dataset')
 parser.add_argument('--iou_threshold',type=float,default=0.5,
                     help='Threshold for IOU to determine if object is detected or not')
@@ -43,8 +43,7 @@ parser.add_argument('--label_path',type=str,default='labels.csv',
                     help='Filepath to labels.csv')
                     
 args = parser.parse_args()
-print('Labels acquired')
-df=pd.read_csv('labels.csv')
+df=pd.read_csv('labels_test.csv')
 image_filepath=args.image_filepath+str('JPEGImages/') #train images are here
 annotations_filepath=args.image_filepath+str('Annotations/') # test images are here
 num_images=len(os.listdir(image_filepath))  # total number of images in the dataset
@@ -75,14 +74,12 @@ def main():
         d=detector.detector()
 
         # get ground truths
-        print('Getting dfs')
         ground_truth_df = df[df['filename'] == img_name]
         ground_truth_arr=[]
         for i in range(len(ground_truth_df)):
             ground_truth_arr.append(ground_truth_df.iloc[i][1:])
         ground_truth_arr=np.array(ground_truth_arr)
-        
-        print('Rearranging')
+
         # rearrange gnd truth array to [xmin,ymin,xmax,ymax,width,height,class] and get resized bboxes
         resized_gnd_truth_arr=np.copy(ground_truth_arr)
         for i in range(len(ground_truth_arr)):
@@ -102,7 +99,6 @@ def main():
 
         # get F1 Score
         # get IOU average of all detected objects
-        print('Getting F1')
         gd_len=len(resized_gnd_truth_arr)
         gnd_total+=gd_len
         TP,FP,FN,iou = get_F1(resized_gnd_truth_arr,pred_arr,args.iou_threshold)
