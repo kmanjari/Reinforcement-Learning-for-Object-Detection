@@ -81,10 +81,10 @@ if args.load_model==0:
 eps = np.finfo(np.float32).eps.item()
 classes = load_classes('data/coco.names')
 
-#CUDA = torch.cuda.is_available()
-#if CUDA:
-#    print('CUDA available, setting GPU mode')
-#    policy.cuda()
+CUDA = torch.cuda.is_available()
+if CUDA:
+   print('CUDA available, setting GPU mode')
+   policy.cuda()
 
 
 print('Loading the model if any')
@@ -103,6 +103,8 @@ def save_model():
 
 def select_action(state):
     state = torch.from_numpy(state).float().unsqueeze(0)
+    if CUDA:
+        state = state.cuda()
     probs1 = policy(state)
     #print(probs1)
     m1 = Categorical(probs1)
