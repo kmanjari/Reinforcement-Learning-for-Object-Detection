@@ -39,7 +39,7 @@ parser.add_argument('--iou_threshold',type=float,default=0.5,
                     help='Threshold for IOU to determine if object is detected or not')
 parser.add_argument('--alpha',type=float,default=0.5,
                     help='IOU Weight for reward --> r=alpha*(iou)+(1-alpha)*F1')
-parser.add_argument('--label_path',type=string,defaul='labels.csv',
+parser.add_argument('--label_path',type=str,default='labels.csv',
                     help='Filepath to labels.csv')
                     
 args = parser.parse_args()
