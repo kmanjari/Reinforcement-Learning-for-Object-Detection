@@ -85,6 +85,9 @@ CUDA = torch.cuda.is_available()
 if CUDA:
    print('CUDA available, setting GPU mode')
    print('GPU Name:',torch.cuda.get_device_name(0))
+   print('Memory Usage:')
+   print('Allocated:', round(torch.cuda.memory_allocated(0)/1024**3,1), 'GB')
+   print('Cached:   ', round(torch.cuda.memory_cached(0)/1024**3,1), 'GB')
    policy.cuda()
 
 
