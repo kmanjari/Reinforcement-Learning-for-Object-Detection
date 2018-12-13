@@ -43,7 +43,7 @@ parser.add_argument('--label_path',type=str,default='labels.csv',
                     help='Filepath to labels.csv')
                     
 args = parser.parse_args()
-
+print('Labels acquired')
 df=pd.read_csv('labels.csv')
 image_filepath=args.image_filepath+str('JPEGImages/') #train images are here
 annotations_filepath=args.image_filepath+str('Annotations/') # test images are here
@@ -75,12 +75,14 @@ def main():
         d=detector.detector()
 
         # get ground truths
+        print('Getting dfs')
         ground_truth_df = df[df['filename'] == img_name]
         ground_truth_arr=[]
         for i in range(len(ground_truth_df)):
             ground_truth_arr.append(ground_truth_df.iloc[i][1:])
         ground_truth_arr=np.array(ground_truth_arr)
-
+        
+        print('Rearranging')
         # rearrange gnd truth array to [xmin,ymin,xmax,ymax,width,height,class] and get resized bboxes
         resized_gnd_truth_arr=np.copy(ground_truth_arr)
         for i in range(len(ground_truth_arr)):
@@ -100,7 +102,7 @@ def main():
 
         # get F1 Score
         # get IOU average of all detected objects
-
+        print('Getting F1')
         gd_len=len(resized_gnd_truth_arr)
         gnd_total+=gd_len
         TP,FP,FN,iou = get_F1(resized_gnd_truth_arr,pred_arr,args.iou_threshold)
