@@ -84,6 +84,7 @@ classes = load_classes('data/coco.names')
 CUDA = torch.cuda.is_available()
 if CUDA:
    print('CUDA available, setting GPU mode')
+   print('GPU Name:',torch.cuda.get_device_name(0))
    policy.cuda()
 
 
@@ -237,7 +238,7 @@ def main():
             else:
                 iou_reward = 0
             reward = args.alpha*(iou_reward)+(1-args.alpha)*F1
-            reward_arr.append(reward)   
+            reward_arr.append(reward)
             # print('Episode:%d \t Reward:%f'%(episodes,reward))
             policy.rewards.append(reward)
             finish_episode()  # does all backprop
