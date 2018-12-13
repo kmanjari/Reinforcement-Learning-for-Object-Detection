@@ -165,7 +165,7 @@ def write_results(prediction, confidence, num_classes, nms = True, nms_conf = 0.
         
              #sort the detections such that the entry with the maximum objectness
              #confidence is at the top
-            conf_sort_index = torch.sort(image_pred_class[:,4], descending = True )[1]
+            conf_sort_index = torch.sort    (image_pred_class[:,4], descending = True )[1]
             image_pred_class = image_pred_class[conf_sort_index]
             idx = image_pred_class.size(0)
             

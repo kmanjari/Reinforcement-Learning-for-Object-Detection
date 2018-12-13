@@ -237,7 +237,7 @@ def main():
             else:
                 iou_reward = 0
             reward = args.alpha*(iou_reward)+(1-args.alpha)*F1
-            reward_arr.append(reward)
+            reward_arr.append(reward)   
             # print('Episode:%d \t Reward:%f'%(episodes,reward))
             policy.rewards.append(reward)
             finish_episode()  # does all backprop
