@@ -124,6 +124,8 @@ def finish_episode():
         R = r + args.gamma * R
         rewards.insert(0, R)
     rewards = torch.tensor(rewards)
+    if CUDA:
+        rewards = rewards.cuda()
     #rewards = (rewards - rewards.mean()) / (rewards.std() + eps)
     for log_prob, reward in zip(policy.saved_log_probs1, rewards):
         policy_loss1.append(-log_prob * reward)
@@ -238,8 +240,6 @@ def main():
             reward_arr.append(reward)
             # print('Episode:%d \t Reward:%f'%(episodes,reward))
             policy.rewards.append(reward)
-            if CUDA:
-                reward = reward.cuda()
             finish_episode()  # does all backprop
             print_arg=False
             if print_arg:
