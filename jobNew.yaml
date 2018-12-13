@@ -53,7 +53,7 @@ spec:
   # Leave it commented when learning how to use the cluster.
   nodeSelector:
     kubernetes.io/hostname: erdos
-    # gputype: 1080ti
+#     gputype: 1080ti
   # This part specifies the Docker container in which your code will run.
   containers:
   - name: py # The container also has a name but it ususally doesn't matter
@@ -73,11 +73,11 @@ spec:
         alpha.kubernetes.io/nvidia-gpu: 1 # Number of GPUs
         # RAM can be specified in either MiB (1024x1024 bytes) (ex. "500Mi")
         # or GiB (ex. "4Gi")
-        memory: "25Gi"
-        cpu: "7" # Number of CPU cores
+        memory: "12Gi"
+        cpu: "5" # Number of CPU cores
       requests:
-        memory: "25Gi"
-        cpu: "7"
+        memory: "12Gi"
+        cpu: "5"
     # Here, you can specify where you want the above directories to be mounted
     # within the container. It is recommended to use this configuration as
     # it mirrors what is present on the master machine.
