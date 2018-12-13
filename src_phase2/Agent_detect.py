@@ -61,11 +61,11 @@ parser.add_argument('--alpha',type=float,default=0.5,
                     help='IOU Weight for reward --> r=alpha*(iou)+(1-alpha)*F1')
 parser.add_argument('--epoch',type=int,default=1,
                     help='Number of epochs')
-                    
+
                     
 args = parser.parse_args()
 
-df=pd.read_csv('labels.csv')
+df=pd.read_csv(args.label_path)
 image_filepath=args.image_filepath+str('JPEGImages/') #train images are here
 annotations_filepath=args.image_filepath+str('Annotations/') # test images are here
 num_images=len(os.listdir(image_filepath))  # total number of images in the dataset

@@ -229,7 +229,7 @@ if __name__ == '__main__':
       print('--> skipped %d boxes and %d XML files.' %
             (skipped_boxes, skipped_files), file=sys.stderr)
   xml_df = pd.DataFrame(arr, columns=columns)
-  xml_df.to_csv('labels.csv', index=None)
+  xml_df.to_csv('labels_test.csv', index=None)
   
   print('Finished processing %d XML files.' % len(xml_files), file=sys.stderr)
   print('Skipped %d XML files not in ImageNet Challenge.' % skipped_files,
