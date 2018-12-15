@@ -33,8 +33,8 @@ parser.add_argument('--nms_thresh',type=float,default=0.3,
                     help='Non Maximal Suppression Threshold for YOLO')
 parser.add_argument('--reso',type=int,default=416,
                     help='Resolution of Image to be fed into YOLO for detection keeping the Aspect Ration constant')
-parser.add_argument('--image_filepath',type=str,default='VOCdevkit_test/VOC2007/',
-                    help='VOC Dataset')
+parser.add_argument('--image_filepath',type=str,default='VOCdevkit/VOC2007/',
+                    help='VOC Dataset')   # 'VOCdevkit_test/VOC2007/' for test
 parser.add_argument('--iou_threshold',type=float,default=0.5,
                     help='Threshold for IOU to determine if object is detected or not')
 parser.add_argument('--alpha',type=float,default=0.5,
@@ -43,7 +43,7 @@ parser.add_argument('--label_path',type=str,default='labels.csv',
                     help='Filepath to labels.csv')
                     
 args = parser.parse_args()
-df=pd.read_csv('labels_test.csv')
+df=pd.read_csv('labels.csv')  # 'labels_test.csv' for test
 image_filepath=args.image_filepath+str('JPEGImages/') #train images are here
 annotations_filepath=args.image_filepath+str('Annotations/') # test images are here
 num_images=len(os.listdir(image_filepath))  # total number of images in the dataset
@@ -68,6 +68,7 @@ def main():
         orig_img_arr_lr, w, h = letterbox_image(orig_img_arr,(args.reso,args.reso)) #resized image by keeping aspect ratio same
         x = Image.fromarray(orig_img_arr_lr.astype('uint8'), 'RGB')
         orig_img_arr=np.array(x)
+        
         # plt.imshow(orig_img_arr)
         # plt.show()
         detector = Detector(args.confidence,args.nms_thresh,args.reso,orig_img_arr)
