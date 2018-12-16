@@ -258,7 +258,12 @@ def main():
                 print()
 
         save_model()
+        print('#'*50)
+        print()
+        print('Epochs:%d'%epoch)
         print('Mean reward:%f'%(np.mean(reward_arr)))
+        print()
+        print('#'*50)
         reward_epoch.append(np.mean(reward_arr))
     print('Reward array:',reward_epoch)
     

@@ -64,8 +64,8 @@ def main():
         FN_total=0
         FP_total=0
         gnd_total=0
-        for episodes in tqdm(range(len(os.listdir(image_filepath)))):
-        # for episodes in tqdm(range(3)):
+        # for episodes in tqdm(range(len(os.listdir(image_filepath)))):
+        for episodes in tqdm(range(3)):
             img_name = os.listdir(image_filepath)[episodes] # eg: 000005.jpg
             img = Image.open(image_filepath+img_name)
             orig_img_arr = np.array(img)
