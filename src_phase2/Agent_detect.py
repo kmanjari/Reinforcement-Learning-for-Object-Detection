@@ -65,7 +65,7 @@ parser.add_argument('--epoch',type=int,default=1,
                     
 args = parser.parse_args()
 
-df=pd.read_csv(args.label_path)
+df=pd.read_csv('labels.csv')
 image_filepath=args.image_filepath+str('JPEGImages/') #train images are here
 annotations_filepath=args.image_filepath+str('Annotations/') # test images are here
 num_images=len(os.listdir(image_filepath))  # total number of images in the dataset
@@ -152,6 +152,7 @@ def finish_episode():
 
 def main():
     image_list = os.listdir(image_filepath)
+    #num_images=10
     reward_epoch=[]
     for epoch in range(args.epoch):
         image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
