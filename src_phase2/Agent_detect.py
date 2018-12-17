@@ -96,9 +96,9 @@ if CUDA:
 print('Loading the model if any')
 print(args.load_model)
 if args.load_model==1:
-    policy.load_state_dict(torch.load(args.weights,map_location='cpu'))
+    policy.load_state_dict(torch.load(args.weights))
     optimizer = optim.Adam(policy.parameters(), lr=args.lr)
-    optimizer.load_state_dict(torch.load(args.optimizer,map_location='cpu'))
+    optimizer.load_state_dict(torch.load(args.optimizer))
     print(args.weights)
     print(args.optimizer)
     
@@ -157,8 +157,8 @@ def main():
         image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
         reward_arr=[]
         # for episodes in range(args.episodes):
-        for episodes in tqdm(range(num_images)):
-        # for episodes in tqdm(range(3)):
+        # for episodes in tqdm(range(num_images)):
+        for episodes in tqdm(range(3)):
             img_name = image_list[episodes]
             # index_img = np.random.uniform(low = 0, high = num_images, size = (1,)).astype(int) # random number between 0 and num_images eg: 435
             # img_name = os.listdir(image_filepath)[index_img[0]] # eg: 000005.jpg
@@ -171,7 +171,7 @@ def main():
             ## mean size of image is (384,472,3)
             # img = read(folder+str(index_img[0])+'.png',64)
             #synthesize the image
-            change_img , act = synthetic_change(img,action_table_synth,1)
+            change_img , act = synthetic_change(img,action_table_synth,2)
             #convert to array
             change_img_arr = np.array(change_img)
             change_img_arr, w, h= letterbox_image(change_img_arr,(args.reso,args.reso))
