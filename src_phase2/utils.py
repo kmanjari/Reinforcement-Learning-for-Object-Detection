@@ -120,7 +120,7 @@ def letterbox_image(img, inp_dim):
     
 def synthetic_change(img,action_table_synth,flag):
     
-    if flag:
+    if flag==1:
         act = random.choice(action_table_synth) #choose a random change in the image(synthetic)
         change_img = change_brightness(img,act)
 
@@ -128,8 +128,21 @@ def synthetic_change(img,action_table_synth,flag):
     elif flag==0:
         act = random.choice(action_table_synth)
         change_img = change_color(img,act)
+        
+    elif flag==2:
+        act1 = random.choice(action_table_synth) #choose a random change in the image(synthetic)
+        change_img = change_brightness(img,act1)
+        
+        act2 = random.choice(action_table_synth)
+        change_img = change_color(change_img,act2)
+        
+        act3 = random.choice(action_table_synth)
+        change_img = change_contrast(change_img,act3)
+        
+        act4 = random.choice(action_table_synth)
+        change_img = change_sharpness(change_img,act4)
     #
-    return change_img,act
+    return change_img,act4
     
     
 def get_iou(boxA, boxB):

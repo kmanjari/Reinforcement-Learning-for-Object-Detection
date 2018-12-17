@@ -65,7 +65,7 @@ def main():
         FP_total=0
         gnd_total=0
         for episodes in tqdm(range(len(os.listdir(image_filepath)))):
-        # for episodes in tqdm(range(3)):
+        # for episodes in tqdm(range(2)):
             img_name = os.listdir(image_filepath)[episodes] # eg: 000005.jpg
             img = Image.open(image_filepath+img_name)
             orig_img_arr = np.array(img)
@@ -74,7 +74,7 @@ def main():
             orig_img_arr=np.array(x)
             
             ### change the image
-            change_img , act = synthetic_change(img,action_table_synth)
+            change_img , act = synthetic_change(img,action_table_synth,2)
             #convert to array
             change_img_arr = np.array(change_img)
             change_img_arr, w, h= letterbox_image(change_img_arr,(args.reso,args.reso))
@@ -82,8 +82,10 @@ def main():
             change_img_arr=np.array(x)
             
             # plt.imshow(orig_img_arr)
+            # plt.title('Original Image')
             # plt.show()
             # plt.imshow(change_img_arr)
+            # plt.title('Changed Image')
             # plt.show()
             
             # plt.imshow(orig_img_arr)
