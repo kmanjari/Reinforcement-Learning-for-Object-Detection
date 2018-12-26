@@ -81,12 +81,12 @@ def main():
             x = Image.fromarray(change_img_arr.astype('uint8'), 'RGB')
             change_img_arr=np.array(x)
             
-            # plt.imshow(orig_img_arr)
-            # plt.title('Original Image')
-            # plt.show()
-            # plt.imshow(change_img_arr)
-            # plt.title('Changed Image')
-            # plt.show()
+            plt.imshow(orig_img_arr)
+            plt.title('Original Image')
+            plt.show()
+            plt.imshow(change_img_arr)
+            plt.title('Changed Image')
+            plt.show()
             
             # plt.imshow(orig_img_arr)
             # plt.show()

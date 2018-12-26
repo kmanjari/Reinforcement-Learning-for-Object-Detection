@@ -139,8 +139,10 @@ def synthetic_change(img,action_table_synth,flag):
         act3 = random.choice(action_table_synth)
         change_img = change_contrast(change_img,act3)
         
-        act = random.choice(action_table_synth)
-        change_img = change_sharpness(change_img,act)
+        act4 = random.choice(action_table_synth)
+        change_img = change_sharpness(change_img,act4)
+        
+        act=[act1,act2,act3,act4]
     #
     return change_img,act
     
