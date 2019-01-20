@@ -31,6 +31,7 @@ COCO_CLASSES = ('person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
 
 
 def get_label_map(label_file):
+    print(COCO_ROOT)
     label_map = {}
     labels = open(label_file, 'r')
     for line in labels:
