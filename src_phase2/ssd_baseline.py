@@ -107,7 +107,10 @@ def main():
             # recall = TP/(TP+FN+eps)
             # precision = TP/(TP+FP+eps)
             # F1 = 2*recall*precision/(precision+recall+eps)
-            reward=np.sum(iou)/(TP+FP+FN)
+            if len(iou)>0:
+                reward=np.sum(iou)/(TP+FP+FN)
+            else:
+                reward=0
             reward_arr.append(reward)
             
             print_arg=False
