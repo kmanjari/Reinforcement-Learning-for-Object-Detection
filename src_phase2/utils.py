@@ -5,7 +5,7 @@ from PIL import Image,ImageEnhance
 from random import shuffle
 import cv2
 import matplotlib.pyplot as plt
-from skimage.measure import compare_ssim as ssim
+# from skimage.measure import compare_ssim as ssim
 
 
 def shuffle_arr(arr):
@@ -77,34 +77,34 @@ def mse(imageA, imageB):
     return err1,err2,err3
 
 
-
-def compare_images(imageA, imageB,show=False):
-    '''
-     compute the mean squared error and structural similarity
-     index for the images
-    '''
-    m1,m2,m3 = mse(imageA, imageB)
-    s = ssim(imageA, imageB,multichannel=True)
-    if show==True:
-        fig=plt.figure()
-        # setup the figure
-        plt.suptitle("MSE: %.2f  %.2f  %.2f SSIM: %.2f" % (m1,m2,m3,s))
-
-        # show first image
-        ax = fig.add_subplot(1, 2, 1)
-        plt.imshow(imageA, cmap = plt.cm.gray)
-        plt.axis("off")
-
-        # show the second image
-        ax = fig.add_subplot(1, 2, 2)
-        plt.imshow(imageB, cmap = plt.cm.gray)
-        plt.axis("off")
-
-        # show the images
-        plt.show()
-
-    return m1,m2,m3,s
-    
+#
+# def compare_images(imageA, imageB,show=False):
+#     '''
+#      compute the mean squared error and structural similarity
+#      index for the images
+#     '''
+#     m1,m2,m3 = mse(imageA, imageB)
+#     s = ssim(imageA, imageB,multichannel=True)
+#     if show==True:
+#         fig=plt.figure()
+#         # setup the figure
+#         plt.suptitle("MSE: %.2f  %.2f  %.2f SSIM: %.2f" % (m1,m2,m3,s))
+#
+#         # show first image
+#         ax = fig.add_subplot(1, 2, 1)
+#         plt.imshow(imageA, cmap = plt.cm.gray)
+#         plt.axis("off")
+#
+#         # show the second image
+#         ax = fig.add_subplot(1, 2, 2)
+#         plt.imshow(imageB, cmap = plt.cm.gray)
+#         plt.axis("off")
+#
+#         # show the images
+#         plt.show()
+#
+#     return m1,m2,m3,s
+#
 def letterbox_image(img, inp_dim):
     '''resize image with unchanged aspect ratio using padding'''
     img_w, img_h = img.shape[1], img.shape[0]
