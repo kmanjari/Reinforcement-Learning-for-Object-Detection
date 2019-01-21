@@ -31,9 +31,6 @@ COCO_CLASSES = ('person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
 
 
 def get_label_map(label_file):
-    print()
-    print(COCO_ROOT)
-    print()
     label_map = {}
     labels = open(label_file, 'r')
     for line in labels:
@@ -47,6 +44,9 @@ class COCOAnnotationTransform(object):
     Initilized with a dictionary lookup of classnames to indexes
     """
     def __init__(self):
+        print()
+        print(osp.join(COCO_ROOT, 'coco_labels.txt'))
+        print()
         self.label_map = get_label_map(osp.join(COCO_ROOT, 'coco_labels.txt'))
 
     def __call__(self, target, width, height):
