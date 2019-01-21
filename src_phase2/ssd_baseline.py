@@ -74,8 +74,8 @@ def main():
     for epoch in range(args.epoch):
         image_list = shuffle_arr(image_list) #shuffle_arr from utils.py shuffles the array randomly
         reward_arr=[]
-        for episodes in tqdm(range(num_images)):
-        # for episodes in tqdm(range(3)):
+        # for episodes in tqdm(range(num_images)):
+        for episodes in tqdm(range(3)):
             img_name = image_list[episodes]
             img = Image.open(image_filepath+img_name)
             orig_img_arr = np.array(img)
