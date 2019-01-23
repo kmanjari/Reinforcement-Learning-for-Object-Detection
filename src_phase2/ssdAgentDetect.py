@@ -17,6 +17,11 @@ from tqdm import tqdm
 from resnet_policy import resnet18
 from ssd_pytorch.ssdDetector import Detector
 import pandas as pd
+import os.path
+
+# gets home dir cross platform
+HOME = os.path.expanduser("~")
+print(HOME)
 
 parser = argparse.ArgumentParser(description='PyTorch REINFORCE SSD')
 parser.add_argument('--gamma', type=float, default=0.99, metavar='G',

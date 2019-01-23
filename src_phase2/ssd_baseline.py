@@ -1,8 +1,5 @@
 '''
-RL Agent to change image brightness according
-to image(state) to get maximum performance from
-a pre-trained network, in this case SSD
-Agent network is ResNet18 with REINFORCE Algorithm
+Get baseline score of SSD
 '''
 import argparse
 import numpy as np
