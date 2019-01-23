@@ -21,7 +21,7 @@ import os.path
 
 # gets home dir cross platform
 HOME = os.path.expanduser("~")
-print(HOME)
+print('home:',HOME)
 
 parser = argparse.ArgumentParser(description='PyTorch REINFORCE SSD')
 parser.add_argument('--gamma', type=float, default=0.99, metavar='G',
