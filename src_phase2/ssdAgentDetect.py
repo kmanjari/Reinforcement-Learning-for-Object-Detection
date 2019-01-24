@@ -138,6 +138,10 @@ def finish_episode():
 # Detector init
 detector = Detector(show=args.show) # initialize the SSD
 
+print()
+print('Running for %d epochs'%args.epoch)
+print()
+
 def main():
     image_list = os.listdir(image_filepath)
     #num_images=10
