@@ -13,4 +13,4 @@ cd /storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2
 # Run the code. The -u option is used here to use unbuffered writes
 # so that output is piped to the file as and when it is produced.
 
-python -u ssdAgentDetect.py &> outputs/ssd_training
+python -u ssdAgentDetect.py --load_model=1 --epoch=50 &> outputs/ssd_training
