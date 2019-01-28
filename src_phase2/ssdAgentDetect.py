@@ -15,6 +15,7 @@ from torch.distributions import Categorical
 from utils import *
 from tqdm import tqdm
 from resnet_policy import resnet18
+from resnet_policy import resnet34
 
 # gets home dir cross platform
 HOME = os.path.expanduser("~")
