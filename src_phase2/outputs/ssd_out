@@ -1,0 +1,23 @@
+home: /storage/home/sidnayak
+CUDA available, setting GPU mode
+GPU Name: GeForce GTX 1080 Ti
+Memory Usage:
+Allocated: 0.04256868362426758 GB
+Cached:    0.0443115234375 GB
+Loading the model if any
+0
+/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/ssd.py:34: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  self.priors = Variable(self.priorbox.forward(), volatile=True)
+/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/layers/modules/l2norm.py:17: UserWarning: nn.init.constant is now deprecated in favor of nn.init.constant_.
+  init.constant(self.weight,self.gamma)
+Loading weights into state dict...
+Finished!
+  0%|          | 0/3 [00:00<?, ?it/s] 33%|###3      | 1/3 [00:00<00:00,  5.18it/s]100%|##########| 3/3 [00:00<00:00,  8.33it/s]
+Saving the weights
+##################################################
+
+Epochs:0
+Mean reward:0.677193
+
+##################################################
+Reward array: [0.6771926359814998]

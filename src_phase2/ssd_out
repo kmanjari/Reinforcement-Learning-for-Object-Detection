@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "ssd_baseline.py", line 18, in <module>
+    from ssd_pytorch.ssdDetector import Detector
+  File "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/__init__.py", line 1, in <module>
+    from .data import *
+  File "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/data/__init__.py", line 3, in <module>
+    from .coco import COCODetection, COCOAnnotationTransform, COCO_CLASSES, COCO_ROOT, get_label_map
+  File "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/data/coco.py", line 75, in <module>
+    class COCODetection(data.Dataset):
+  File "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/data/coco.py", line 87, in COCODetection
+    target_transform=COCOAnnotationTransform(), dataset_name='MS COCO'):
+  File "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/data/coco.py", line 47, in __init__
+    self.label_map = get_label_map(osp.join(COCO_ROOT, 'coco_labels.txt'))
+  File "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/ssd_pytorch/data/coco.py", line 35, in get_label_map
+    labels = open(label_file, 'r')
+FileNotFoundError: [Errno 2] No such file or directory: '/data/coco/coco_labels.txt'
