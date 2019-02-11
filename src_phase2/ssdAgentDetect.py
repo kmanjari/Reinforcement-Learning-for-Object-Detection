@@ -34,9 +34,9 @@ parser.add_argument('--seed', type=int, default=1234, metavar='N',
                     help='random seed (default: 123)')
 parser.add_argument('--load_model',type=int,default=0,metavar='N',
                     help='whether to use the saved model or not, to resume training')
-parser.add_argument('--weights',default='Weights_ssd_34.pt',
+parser.add_argument('--weights',default='Weights_ssd_50.pt',
                     help='Path to the weights.')
-parser.add_argument('--optimizer',default='Optimizer_ssd_34.pt',
+parser.add_argument('--optimizer',default='Optimizer_ssd_50.pt',
                     help='Path to the Optimizer.')
 parser.add_argument('--show',default=0,
                     help='To show the images before and after transformation')
@@ -66,6 +66,8 @@ action_table=1/action_table_synth # the optimal actions are reciprocal of the fa
 
 # policy = resnet18()  # can also be resnet34, resnet50, resnet101, resnet152
 # policy = resnet34()
+print('Weights Name: ',args.weights)
+print('Optimizer Name: ',args.optimizer)
 policy = resnet50()
 if args.load_model==0:
     optimizer = optim.Adam(policy.parameters(), lr=args.lr)
