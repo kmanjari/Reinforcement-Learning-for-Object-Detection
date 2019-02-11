@@ -16,6 +16,7 @@ from utils import *
 from tqdm import tqdm
 from resnet_policy import resnet18
 from resnet_policy import resnet34
+from resnet_policy import resnet50
 
 # gets home dir cross platform
 HOME = os.path.expanduser("~")
@@ -64,7 +65,8 @@ action_table=1/action_table_synth # the optimal actions are reciprocal of the fa
 ###########################################################################
 
 # policy = resnet18()  # can also be resnet34, resnet50, resnet101, resnet152
-policy = resnet34()
+# policy = resnet34()
+policy = resnet50()
 if args.load_model==0:
     optimizer = optim.Adam(policy.parameters(), lr=args.lr)
 eps = np.finfo(np.float32).eps.item()
