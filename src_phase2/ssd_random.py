@@ -32,6 +32,8 @@ parser.add_argument('--iou_threshold',type=float,default=0.5,
                     help='Threshold for IOU to determine if object is detected or not')
 parser.add_argument('--epoch',type=int,default=5,
                     help='Number of epochs')
+parser.add_argument('--alpha',type=float,default=0.1,
+                    help='weight for IOU in reward')
 args = parser.parse_args()
 
 df=pd.read_csv('labels.csv')
@@ -107,11 +109,12 @@ def main():
             TP,FP,FN,iou = get_F1(ground_truth_arr,pred_arr,args.iou_threshold)
             # reward=np.mean(IOU+F1_score) #to make sure everything is in 0-1 range
             iou=np.array(iou)
-            # recall = TP/(TP+FN+eps)
-            # precision = TP/(TP+FP+eps)
-            # F1 = 2*recall*precision/(precision+recall+eps)
+            recall = TP/(TP+FN+eps)
+            precision = TP/(TP+FP+eps)
+            F1 = 2*recall*precision/(precision+recall+eps)
             if len(iou)>0:
-                reward=np.sum(iou)/(TP+FP+FN)
+                # reward=np.sum(iou)/(TP+FP+FN)
+                reward = args.alpha*(np.mean(iou)) + (1-args.alpha)*(F1)
             else:
                 reward=0
             reward_arr.append(reward)
