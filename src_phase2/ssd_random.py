@@ -79,7 +79,7 @@ def main():
             img = Image.open(image_filepath+img_name)
             orig_img_arr = np.array(img)
 
-            change_img , act = synthetic_change(img,action_table_synth,1)
+            change_img , act = synthetic_change(img,action_table_synth,2)
             #convert to array
             change_img_arr = np.array(change_img)
             
