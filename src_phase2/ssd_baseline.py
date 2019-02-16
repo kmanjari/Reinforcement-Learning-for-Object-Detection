@@ -32,6 +32,8 @@ parser.add_argument('--iou_threshold',type=float,default=0.5,
                     help='Threshold for IOU to determine if object is detected or not')
 parser.add_argument('--epoch',type=int,default=1,
                     help='Number of epochs')
+parser.add_argument('--alpha',type=float,default=0.1,
+                    help='weight for IOU in reward')
 args = parser.parse_args()
 
 df=pd.read_csv('labels.csv')
