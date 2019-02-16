@@ -101,11 +101,12 @@ def main():
             TP,FP,FN,iou = get_F1(ground_truth_arr,pred_arr,args.iou_threshold)
             # reward=np.mean(IOU+F1_score) #to make sure everything is in 0-1 range
             iou=np.array(iou)
-            # recall = TP/(TP+FN+eps)
-            # precision = TP/(TP+FP+eps)
-            # F1 = 2*recall*precision/(precision+recall+eps)
+            recall = TP/(TP+FN+eps)
+            precision = TP/(TP+FP+eps)
+            F1 = 2*recall*precision/(precision+recall+eps)
             if len(iou)>0:
-                reward=np.sum(iou)/(TP+FP+FN)
+                # reward=np.sum(iou)/(TP+FP+FN)
+                reward = args.alpha*(np.mean(iou)) + (1-args.alpha)*(F1)
             else:
                 reward=0
             reward_arr.append(reward)
