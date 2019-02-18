@@ -52,8 +52,8 @@ spec:
   # You can specify a label indicating a specific model of GPU here when you need it.
   # Leave it commented when learning how to use the cluster.
   nodeSelector:
-    kubernetes.io/hostname: knuth
-    # gputype: k20
+    #kubernetes.io/hostname: ramanujam
+    gputype: 1080ti
   # This part specifies the Docker container in which your code will run.
   containers:
   - name: py # The container also has a name but it ususally doesn't matter
