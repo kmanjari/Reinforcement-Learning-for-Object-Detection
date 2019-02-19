@@ -58,8 +58,13 @@ df=pd.read_csv('labels.csv')
 image_filepath=args.image_filepath+str('JPEGImages/') #train images are here
 annotations_filepath=args.image_filepath+str('Annotations/') # test images are here
 num_images=len(os.listdir(image_filepath))  # total number of images in the dataset
-action_table_synth=np.linspace(0.05,2,40) # to synthetically change the images
-action_table=1/action_table_synth # the optimal actions are reciprocal of the factor of the synthesized image
+# action_table_synth=np.linspace(0.05,2,40) # to synthetically change the images
+#################
+# changed on 19/02/2019
+action_table_synth=np.linspace(0.3,1.7,29)
+action_table=np.linspace(0.3,1.7,15)
+#################
+# action_table=1/action_table_synth # the optimal actions are reciprocal of the factor of the synthesized image
 # 0 means complete dark,2 means complete bright, 1 means the original image
 
 ###########################################################################
@@ -127,7 +132,7 @@ def finish_episode():
         rewards = rewards.cuda()
     #rewards = (rewards - rewards.mean()) / (rewards.std() + eps)
     for log_prob, reward in zip(policy.saved_log_probs1, rewards):
-        policy_loss1.append(-log_prob * reward)
+        policy_loss1.append(-log_prob * reward) #
         #print(policy_loss1)
     
     optimizer.zero_grad()
