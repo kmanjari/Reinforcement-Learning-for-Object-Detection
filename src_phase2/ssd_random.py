@@ -40,14 +40,10 @@ df=pd.read_csv('labels.csv')
 image_filepath=args.image_filepath+str('JPEGImages/') #train images are here
 annotations_filepath=args.image_filepath+str('Annotations/') # test images are here
 num_images=len(os.listdir(image_filepath))  # total number of images in the dataset
-# action_table_synth=np.linspace(0.05,2,40) # to synthetically change the images
-# action_table=1/action_table_synth # the optimal actions are reciprocal of the factor of the synthesized image
+action_table_synth=np.linspace(0.05,2,40) # to synthetically change the images
+action_table=1/action_table_synth # the optimal actions are reciprocal of the factor of the synthesized image
 # 0 means complete dark,2 means complete bright, 1 means the original image
-#################
-# changed on 19/02/2019
-action_table_synth=np.linspace(0.3,1.7,29)
-action_table=np.linspace(0.3,1.7,15)
-#################
+
 ###########################################################################
 
 policy = resnet18()  # can also be resnet34, resnet50, resnet101, resnet152
