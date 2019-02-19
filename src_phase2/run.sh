@@ -12,4 +12,5 @@ cd /storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2
 # Run the code. The -u option is used here to use unbuffered writes
 # so that output is piped to the file as and when it is produced.
 # Here, the code is the MNIST Tensorflow example.
-python -u Agent_detect.py --load_model=1 --epoch=10 &> out
+# python -u Agent_detect.py --load_model=1 --epoch=10 &> out
+python -u ssd_random.py --epoch=20 &> outputs/out_random_newReward
