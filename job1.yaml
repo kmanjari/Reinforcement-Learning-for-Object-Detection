@@ -64,7 +64,7 @@ spec:
     # call that script like below.
     #
     # Note that all paths have to be according to the filesystem inside the container.
-    command: ["/bin/bash", "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/run_ssd.sh"]
+    command: ["/bin/bash", "/storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2/run.sh"]
     # This section specifies the resources you ask for.
     resources:
       # For the purposes of using the cluster, the "requests" section should be the
