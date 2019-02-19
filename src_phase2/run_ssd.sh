@@ -15,5 +15,5 @@ cd /storage/home/sidnayak/Reinforcement-Learning-for-Object-Detection/src_phase2
 
 #python -u ssdAgentDetect.py --load_model=1 --epoch=100 --lr=1e-6 &> outputs/ssd_training_50
 #python -u ssd_random.py --epoch=20 &> outputs/out_random_newReward
-python -u ssd_agentDetect_newReward.py --load_model=1 --epoch=20 &> outputs/out_ssd_newReward
+python -u ssd_agentDetect_newReward.py --load_model=0 --epoch=1 &> outputs/out_ssd_newReward
 #python -u ssd_baseline.py --epoch=1 &> outputs/out_baseline_newReward

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   # Name of the pod. This is the name to use in any interaction with kubectl
-  name: ssd-rl
+  name: ssd-rl1
 spec:
   securityContext:
     # You need to specify your user ID here. You can get this by running "id -u"
