@@ -76,7 +76,7 @@ action_table=np.linspace(0.3,1.7,15)
 # policy = resnet34()
 print('Weights Name: ',args.weights)
 print('Optimizer Name: ',args.optimizer)
-policy = resnet50()
+policy = resnet50(num_classes=len(action_table))
 if args.load_model==0:
     optimizer = optim.Adam(policy.parameters(), lr=args.lr)
 eps = np.finfo(np.float32).eps.item()
