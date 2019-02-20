@@ -67,6 +67,7 @@ num_images=len(os.listdir(image_filepath))  # total number of images in the data
 # changed on 19/02/2019
 action_table_synth=np.linspace(0.3,1.7,29)
 action_table=1/np.linspace(0.3,1.7,15)
+print('Inverted and decreased action space')
 #################
 # 0 means complete dark,2 means complete bright, 1 means the original image
 
