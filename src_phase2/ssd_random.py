@@ -34,6 +34,10 @@ parser.add_argument('--epoch',type=int,default=5,
                     help='Number of epochs')
 parser.add_argument('--alpha',type=float,default=0.1,
                     help='weight for IOU in reward')
+parser.add_argument('--low',type=float,default=0.3,
+                    help='lower limit for action table')
+parser.add_argument('--high',type=float,default=1.7,
+                    help='lower limit for action table')
 args = parser.parse_args()
 
 df=pd.read_csv('labels.csv')
@@ -45,11 +49,17 @@ num_images=len(os.listdir(image_filepath))  # total number of images in the data
 # 0 means complete dark,2 means complete bright, 1 means the original image
 #################
 # changed on 19/02/2019
-low=0.3
-high=1.7
-action_table_synth=np.linspace(low,high,29)
-action_table=1/np.linspace(low,high,15)
+low=args.low
+high=args.high
+action_table_synth=np.linspace(low,high,int(((high-low)*2+0.1)*10))
+action_table=1/np.linspace(low,high,int((len(action_table_synth)+1)/2))
+print('Low:',low)
+print('High:',high)
 print('Inverted and decreased action space')
+print('Action Distortion Table')
+print(action_table_synth)
+print('Action table agent')
+print(action_table)
 #################
 
 ###########################################################################
