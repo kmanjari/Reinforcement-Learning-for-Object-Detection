@@ -35,9 +35,9 @@ parser.add_argument('--seed', type=int, default=1234, metavar='N',
                     help='random seed (default: 123)')
 parser.add_argument('--load_model',type=int,default=0,metavar='N',
                     help='whether to use the saved model or not, to resume training')
-parser.add_argument('--weights',default='Weights_ssd_50_newReward_clip.pt',
+parser.add_argument('--weights',default='Weights_ssd_50_newReward_clip_inv.pt',
                     help='Path to the weights.')
-parser.add_argument('--optimizer',default='Optimizer_ssd_50_newReward_clip.pt',
+parser.add_argument('--optimizer',default='Optimizer_ssd_50_newReward_clip_inv.pt',
                     help='Path to the Optimizer.')
 parser.add_argument('--show',default=0,
                     help='To show the images before and after transformation')
@@ -66,7 +66,7 @@ num_images=len(os.listdir(image_filepath))  # total number of images in the data
 #################
 # changed on 19/02/2019
 action_table_synth=np.linspace(0.3,1.7,29)
-action_table=np.linspace(0.3,1.7,15)
+action_table=1/np.linspace(0.3,1.7,15)
 #################
 # 0 means complete dark,2 means complete bright, 1 means the original image
 
